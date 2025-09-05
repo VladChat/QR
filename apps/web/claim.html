@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8">
+<h1>Claim this code</h1>
+<form id="f">
+  <input id="email" type="email" placeholder="you@email.com" required>
+  <button>Send link</button>
+</form>
+<p id="msg"></p>
+<script>
+const p = new URLSearchParams(location.search);
+const slug = p.get('slug');
+document.getElementById('f').onsubmit = async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const r = await fetch('https://qr-backend.YOURNAME.workers.dev/claim/request', {
+    method: 'POST', headers: {'content-type':'application/json'},
+    body: JSON.stringify({ email, slug })
+  });
+  document.getElementById('msg').textContent = r.ok ? 'Check your email.' : 'Error.';
+}
+</script>

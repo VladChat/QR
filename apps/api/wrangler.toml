@@ -1,0 +1,21 @@
+name = "qr-backend"
+main = "src/index.ts"
+compatibility_date = "2024-09-01"
+
+# Replace these with your real IDs from `wrangler d1 create` and `wrangler kv:namespace create`
+d1_databases = [
+  { binding = "DB", database_name = "qr-db", database_id = "REPLACE_D1_ID" }
+]
+
+kv_namespaces = [
+  { binding = "KV", id = "REPLACE_KV_ID" }
+]
+
+[vars]
+APP_BASE_URL = "https://qr-backend.YOURNAME.workers.dev"
+FRONTEND_BASE_URL = "https://vladchat.github.io/QR"
+JWT_ISSUER = "qr-app"
+MAGIC_TOKEN_TTL_MIN = "20"
+SESSION_TTL_HOURS = "12"
+# Set secrets via: wrangler secret put COOKIE_SECRET
+# Optional: wrangler secret put RESEND_API_KEY (or POSTMARK_TOKEN), TURNSTILE_SECRET

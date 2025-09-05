@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8">
+<h1>Edit</h1>
+<form id="f">
+  <input id="title" placeholder="Title">
+  <textarea id="note" placeholder="Note"></textarea>
+  <input id="pin" placeholder="PIN (if set)" pattern="\d{4}">
+  <button>Save</button>
+</form>
+<p id="msg"></p>
+<script>
+const slug = new URLSearchParams(location.search).get('slug');
+document.getElementById('f').onsubmit = async (e) => {
+  e.preventDefault();
+  const body = {
+    title: document.getElementById('title').value || null,
+    note: document.getElementById('note').value || null,
+    pin: document.getElementById('pin').value || undefined
+  };
+  const r = await fetch(`https://qr-backend.YOURNAME.workers.dev/qr/${slug}/edit`, {
+    method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify(body)
+  });
+  document.getElementById('msg').textContent = r.ok ? 'Saved.' : 'Unauthorized or error.';
+};
+</script>

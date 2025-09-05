@@ -1,0 +1,22 @@
+{
+  "name": "qr-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate": "wrangler d1 migrations apply qr-db"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.23",
+    "jose": "^5.9.6",
+    "@node-rs/argon2": "^1.7.4",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.10",
+    "typescript": "^5.6.2",
+    "@cloudflare/workers-types": "^4.20240903.0"
+  }
+}
